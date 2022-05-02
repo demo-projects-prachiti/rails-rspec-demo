@@ -1,0 +1,18 @@
+<div class="card text-center">
+  <% @posts.each do |post|%>
+    <div class="card-header">
+      <%= link_to post.title, post_path(post) %>
+    </div>
+    <div class="card-body">
+      <p class="card-text"><%= post.description %></p>
+      <p><%= link_to 'Delete Post',post_path(post),class: "btn btn-outline-danger",  method: :delete, data: { confirm: "Are you sure?" } %>
+      <%= link_to 'Edit Post',edit_post_path(post),class: "btn btn-outline-primary" %></p>
+    </div>
+      <div class="card-footer text-muted">
+        <%= time_ago_in_words(post.updated_at) %>
+       </div>
+      </br>
+  </br>
+  <% end %>
+</div>
+</br>

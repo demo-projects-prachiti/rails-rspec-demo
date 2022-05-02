@@ -1,0 +1,20 @@
+<div class="container"><% if notice || alert %>
+  <% if alert %>
+    <!-- <div class="alert alert-danger alert-dismissible fade show" role="alert"> -->
+      <p class="alert alert-danger alert-dismissible fade show" role="alert"><%= alert %>
+  <% else %>
+    <!-- <div class="alert alert-info alert-dismissible fade show" role="alert"> -->
+      <p class="alert alert-info alert-dismissible fade show" role="alert"><%= notice %>
+  <% end %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </p>
+  <% end %>
+</div>
+<!-- <script type="text/javascript">
+  setTimeout(function(){
+    $('.alert').fadeOut();
+   }, 5000);
+</script>
+ -->

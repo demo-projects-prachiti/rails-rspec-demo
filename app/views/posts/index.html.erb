@@ -1,0 +1,27 @@
+<h4 style="text-align: center;">All Blog Posts</h4>
+<div class="container">
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="card text-center shadow mb-5 mr-3 bg-white rounded">
+        <div class="card-header font-weight-bold">
+          by <%= post.user.username %>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title"><%= link_to post.title,post_path(post),class:"text-success" %></h5>
+          <p class="card-text"><%= truncate(post.description,length:100) %></p>
+          <%= link_to "View",post_path(post),class: "btn btn-outline-success" %>
+          <%# if post.user == current_user  %>
+          <% if can? :update, post %>
+          <%= link_to "Edit",edit_post_path(post),class: "btn btn-outline-info" %>
+          <%= link_to "Delete",post_path(post),method: :delete ,data: {confirm:"Are you sure?"},class: "btn btn-outline-danger" %>
+          <% end %>
+          <%= link_to "Comment", new_post_comment_path(post),id: "com_#{post.id}", class: "btn btn-outline-info", remote: true %>
+          <br>
+          <div id="newcomment<%= post.id %>" style="display: none;" class="mt-1">
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<%= link_to "Back", root_path, class: "btn btn-primary" %>
+</div>

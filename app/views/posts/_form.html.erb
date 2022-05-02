@@ -1,0 +1,35 @@
+<%= form_with(model: @post, local: true) do |form| %>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-6">
+       <b><%= form.label :title %><span class="star">*</span>
+       <%= form.text_field :title, class: "form-control", data: { emojiable: true },placeholder:"Enter Title of Post" %></br>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-6">
+        <b><%= form.label :description %><span class="star">*</span>
+        <%= form.text_area :description, size: "60x5", class: "form-control", placeholder: "Enter description of Post here", data: { emojiable: true } %>
+      </br>
+      
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-6">
+        <%= form.label :avatar, "Choose Image" %>
+        <%= form.file_field :avatar %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="row">
+      <div class="col-6">
+        <%= form.submit class:"btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>

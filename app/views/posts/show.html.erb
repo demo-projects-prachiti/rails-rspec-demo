@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="blog-comment">
+        <li class="clearfix">
+          <ul class="comments">
+            <div class="post-comments">
+              <p>Post Title:
+              <br><%= @post.title %></p>
+              <p>Post Description:
+               <br>
+              <%= @post.description %>
+              </p>
+              <% if @post.avatar.attached? %>
+              <p>
+                <%= image_tag url_for(@post.avatar.variant(resize_to_limit: [100, 100])) %>
+              </p>
+              <% end %>
+              <% if @post.liked?(current_user) %>
+                  <%= image_tag "likebuttond.png" , width: "30", height: "30" %>
+              <% else %>
+                <%= link_to like_path(@post), method: "put" do %>
+                  <%= image_tag "likebutton.png" , width: "30", height: "30" %>
+                <% end %>
+              <% end %>
+              <%= @post.likes.count if @post.likes.any? %>
+              <%= link_to "Buy Post", payment_path(@post), class: "btn btn-primary" %>
+              <%=link_to 'Back',posts_path ,class: "btn btn-primary"%>
+            </div>
+          </ul>
+      </li>
+
+      <li class="clearfix">
+        <ul class="comments">
+          <div class="post-comments">
+            <h6>Add a comment:</h6>
+              <%= render 'comments/new' %>
+          </div>
+          <% if @post.comments.exists? %>
+            <%= render 'comments/show' %>
+          <% end %>
+        </ul>
+      </li>
+    </div>
+  </div>
+</div>

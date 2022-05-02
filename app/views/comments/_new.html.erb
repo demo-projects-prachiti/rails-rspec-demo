@@ -1,0 +1,10 @@
+<%= form_with model: [ @post, @post.comments.build ] do |form| %>
+  <p>
+  <%= form.text_field :body %>
+  <span id="error_body" class="error"></span>
+  </p>
+  <%= form.hidden_field :commentor, value: current_user.username %>
+  <p>
+  <%= form.submit "Add Comment", id: "comment_submit" %>
+  </p>
+<% end %> 

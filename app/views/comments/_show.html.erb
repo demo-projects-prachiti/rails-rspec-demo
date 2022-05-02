@@ -1,0 +1,9 @@
+<div class="post-comments">
+  <% @post.comments.order(created_at: :desc).each do |comment| %>
+   <%= time_ago_in_words(comment.created_at) %>
+  ago <%= comment.commentor %> says :
+  <p>
+   <%= comment.body %>  
+  </p>
+  <% end %>
+</div>

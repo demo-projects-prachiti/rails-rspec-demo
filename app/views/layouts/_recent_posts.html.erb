@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+      <!-- Carousel indicators --> 
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <h2>Recent Posts</h2> 
+            <div class="row">
+              <% @posts.each do |post| %>
+                <div class="col-sm-3">
+                  <div class="thumb-wrapper">
+                    <div class="img-box">
+                      <% if post.avatar.attached? %>
+                        <%= image_tag url_for(post.avatar),
+                        style: 'height:100%;width:100%;' %>
+                      <% else %>
+                        <%= image_tag "default_post.png", 
+                        style: 'height:100%;width:100%;'%>
+                      <% end %>
+                    </div>
+                    <div class="thumb-content">
+                      <h4><%= post.title %></h4>
+                      <p class="item-price">By <%= post.user.username %></p>
+                      <p><%= post.description %></p>
+                    </div>            
+                  </div>
+                </div>
+              <% end %>
+            </div>   
+          </div>                
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
