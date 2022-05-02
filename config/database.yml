@@ -85,5 +85,6 @@ test:
 production:
   <<: *default
   database: blog_production
-  username: blog
-  password: <%= ENV['BLOG_DATABASE_PASSWORD'] %>
+  username: prachiti
+  password: <%= ENV.fetch('blog_DATABASE_PASSWORD') %>
+  host: https://git.heroku.com/mysterious-taiga-80286.git
