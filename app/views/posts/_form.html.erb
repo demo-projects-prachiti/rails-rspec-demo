@@ -12,8 +12,15 @@
       <div class="col-6">
         <b><%= form.label :description %><span class="star">*</span>
         <%= form.text_area :description, size: "60x5", class: "form-control", placeholder: "Enter description of Post here", data: { emojiable: true } %>
-      </br>
-      
+      </br>      
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-6">
+        <b><%= form.label :category %><span class="star">*</span>
+        <%= form.collection_select(:category_ids, Category.all,:id ,:name,{prompt: "Make your selection"},{multiple: true, class: "custom-select shadow rounded"})%>
+      </br>      
     </div>
   </div>
   <div class="form-group">

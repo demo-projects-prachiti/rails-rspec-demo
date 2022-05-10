@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 	end
 
 	def new
+    byebug
 		@post = Post.new
 	end
 
@@ -65,7 +66,7 @@ class PostsController < ApplicationController
 			:number             => '4032033915654086',
 			:month              => '05',
 			:year               => '2027',
-			:verification_value => '123',
+			:verification_value => '000',
 			:brand              => 'VISA')	
 			# byebug
 		# Validating the card automatically detects the card type
@@ -92,6 +93,6 @@ class PostsController < ApplicationController
 	end
 	private
 	def post_params
-		params.require(:post).permit(:title, :description, :avatar, :user_id)
+		params.require(:post).permit(:title, :description, :avatar, :user_id, category_ids: [])
 	end
 end

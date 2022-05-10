@@ -11,7 +11,7 @@ import "bootstrap"
 
 Rails.start()
 Turbolinks.start()
-ActiveStorage.start()
+ActiveStorage.start()	
 
 $(document).on("click","#signupsubmit",function(){
   	var email = document.getElementById("user_email").value;

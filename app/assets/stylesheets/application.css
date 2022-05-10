@@ -30,3 +30,8 @@ textarea
 {
     border: none;
 }
+.post-container
+{
+    justify-content: center;
+    align-items: center;
+}
