@@ -5,7 +5,6 @@ class PostsController < ApplicationController
 	end
 
 	def new
-    byebug
 		@post = Post.new
 	end
 
