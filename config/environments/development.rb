@@ -86,18 +86,3 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 end
-class Repeat
-  @@total = 0
-  def initialize( string, times )
-    @string = string
-    @times = times
-    puts "inside initialize"  
-      end
-  def repeat
-   @@total += @times
-    return @string * @times
-  end
- def total
-  "Total times, so far: " + @@total.to_s
-  end
-end
