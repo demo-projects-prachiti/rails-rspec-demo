@@ -86,5 +86,5 @@ production:
   <<: *default
   database: blog_production
   username: prachiti
-  password: <%= ENV.fetch('blog_DATABASE_PASSWORD') %>
-  host: neoblogweb.herokuapp.com
+  password: prachiti
+  # host: neoblogweb.herokuapp.com
