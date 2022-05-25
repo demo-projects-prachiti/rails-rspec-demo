@@ -1,1 +1,1 @@
-$('#com_<%= @post.id %>').siblings('div#newcomment<%= @post.id %>').toggle().html("<%= escape_javascript(render partial: 'comments/new', locals: { post: @post }
+$('#com_<%= @post.id %>').siblings('div#newcomment<%= @post.id %>').toggle().html("<%= escape_javascript(render partial: 'comments/new', locals: { post: @post }) %>");
