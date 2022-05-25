@@ -68,13 +68,12 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
 
  ActionMailer::Base.smtp_settings = {
-  :user_name => ENV['NEOSOFT_USERNAME'],
-  :password => ENV['NEOSOFT_PASSWORD'],
-  :address => 'mail.neosoftmail.com',
-  :port => 465,
-  :authentication => :login,
-  :enable_starttls_auto => true,
-  :openssl_verify_mode => :none
+  :user_name => ENV['GMAIL_USERNAME'],
+  :password => ENV['GMAIL_PASSWORD'],
+  :address => 'smtp.gmail.com',
+  :port => 587,
+  :authentication => :plain,
+  :enable_starttls_auto => true
 }
 # config.action_mailer.smtp_settings = {
 #   address:              'smtp.gmail.com',
