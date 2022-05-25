@@ -1,12 +1,12 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  # before_action :set_posts
+  before_action :set_posts
   
   private
 
-  # def set_posts
-  #   @posts = Post.last(8) 
-  # end
+  def set_posts
+    @posts = Post.last(4) 
+  end
 
   protected
 

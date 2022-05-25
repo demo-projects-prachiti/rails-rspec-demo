@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 	require "active_merchant"
 	def index
-		@posts = Post.order(created_at: :desc)
+		@posts = Post.order(created_at: :desc).includes(:user)
 	end
 
 	def new
@@ -25,10 +25,10 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 	end
 
-		def update
-	@post = Post.find(params[:id])
-			if @post.update(post_params)
-	  		redirect_to @post
+	def update
+    @post = Post.find(params[:id])
+		if @post.update(post_params)
+  		redirect_to @post
 		else
 	  		render :edit
 		end
@@ -48,10 +48,9 @@ class PostsController < ApplicationController
 
 	def payment
 		@post = Post.find(params[:id])
-		# ActiveMerchant::Billing::Base.mode = :test
 		# # gateway = ActiveMerchant::Billing::PaypalGateway.new
 
-		gateway = ActiveMerchant::Billing::TrustCommerceGateway.new(
+		gateway = ActiveMerchant::Billing::PaypalGateway.new(
 	        :login => Rails.application.credentials.PAYPAL[:PAYPAL_LOGIN],
 	        :password => Rails.application.credentials.PAYPAL[:PAYPAL_PASSWORD],
 	        :signature => Rails.application.credentials.PAYPAL[:PAYPAL_SIGNATURE])
@@ -72,6 +71,7 @@ class PostsController < ApplicationController
 			# byebug
 		if credit_card.validate.empty?
 		# Capture $10 from the credit card
+    byebug
 			response = gateway.purchase(amount,credit_card)
 
 			if response.success?
