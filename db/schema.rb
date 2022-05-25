@@ -10,15 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_25_055000) do
+ActiveRecord::Schema.define(version: 2022_05_25_110312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "Students_Teachers", id: false, force: :cascade do |t|
-    t.bigint "Student_id", null: false
-    t.bigint "Teacher_id", null: false
-  end
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -113,18 +108,6 @@ ActiveRecord::Schema.define(version: 2022_05_25_055000) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
-  end
-
-  create_table "students", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "teachers", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
