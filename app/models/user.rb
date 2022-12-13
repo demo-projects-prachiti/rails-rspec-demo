@@ -2,12 +2,14 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable, :omniauthable, omniauth_providers: [:google_oauth2]
+         :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]#, :confirmable
   has_many :likes, dependent: :destroy
   has_many :posts, through: :likes
   has_many :posts, dependent: :destroy
   validates :username, presence: true, uniqueness: true
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i }, unless: Proc.new { |a| a.email.blank? }
+  after_create :send_welcome_email
+
 
   def active_for_authentication?
    super && !disable? 
@@ -37,6 +39,10 @@ class User < ApplicationRecord
         user.email = data["email"] if user.email.blank?
       end
     end
+  end
+
+  def send_welcome_email
+    UserMailer.new_signup_email(self).deliver_later
   end
 end
 

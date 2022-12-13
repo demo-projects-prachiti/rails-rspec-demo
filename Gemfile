@@ -35,7 +35,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
 gem 'country_select', '~> 6.0'
-# gem 'sidekiq'
+gem 'sidekiq'
 # gem "administrate"
 
 # Reduces boot times through caching; required in config/boot.rb
