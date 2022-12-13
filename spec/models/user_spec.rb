@@ -5,7 +5,6 @@ RSpec.describe User, type: :model do
 
   describe 'associations' do
     it { should have_many(:likes).dependent(:destroy) }
-    # it { should have_many(:posts).through(:likes) }
     it { should have_many(:posts).dependent(:destroy) }
   end
 
@@ -15,11 +14,9 @@ RSpec.describe User, type: :model do
     it { should allow_value('user@example.com').for(:email)}
   end
 
-  # describe 'Callbacks' do
-  #   it 'before create' do 
-  #     user = create(:user)
-  #     # expect { user.new_signup_email }.to change { ActionMailer::Base.deliveries.count }.by(1)
-  #     expect(user_mailer).to receive(:new_signup_email).with(user)
-  #   end
-  # end   
+  describe 'Callbacks' do
+    it 'after create' do 
+      expect(UserMailer).to receive(:send_welcome_email)
+    end
+  end   
 end
