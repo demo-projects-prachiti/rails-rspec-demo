@@ -11,7 +11,8 @@ class PostsController < ApplicationController
 	def create
 		@post = current_user.posts.new(post_params)		
 	    if @post.save
-		   	  redirect_to @post
+	    	PostMailJob.perform_later(@post)
+	   	  	redirect_to @post
 	    else
 	      render :new
 	    end
@@ -26,7 +27,7 @@ class PostsController < ApplicationController
 	end
 
 	def update
-    @post = Post.find(params[:id])
+    	@post = Post.find(params[:id])
 		if @post.update(post_params)
   		redirect_to @post
 		else
@@ -66,12 +67,9 @@ class PostsController < ApplicationController
 			:year               => '2027',
 			:verification_value => '000',
 			:brand              => 'VISA')	
-			# byebug
 		# Validating the card automatically detects the card type
-			# byebug
 		if credit_card.validate.empty?
 		# Capture $10 from the credit card
-    byebug
 			response = gateway.purchase(amount,credit_card)
 
 			if response.success?

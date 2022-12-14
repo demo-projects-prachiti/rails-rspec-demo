@@ -16,7 +16,8 @@ RSpec.describe User, type: :model do
 
   describe 'Callbacks' do
     it 'after create' do 
-      expect(UserMailer).to receive(:send_welcome_email)
+      user = create(:user)
+      expect(UserMailer).to receive(:new_signup_email).with(user: user)
     end
   end   
 end
