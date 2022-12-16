@@ -15,9 +15,14 @@ RSpec.describe User, type: :model do
   end
 
   describe 'Callbacks' do
-    it 'after create' do 
+    it 'after create check if mailer is called' do 
       user = create(:user)
-      expect(UserMailer).to receive(:new_signup_email).with(user: user)
+      expect(UserMailer).to receive(:new_signup_email)
+      UserMailer.new_signup_email(user)
+    end
+
+    it 'after create fail test if mailer is called' do 
+      expect(UserMailer).not_to receive(:new_signup_email)
     end
   end   
 end

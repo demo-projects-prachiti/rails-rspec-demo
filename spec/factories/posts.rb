@@ -3,6 +3,5 @@ FactoryBot.define do
     title { "Test title" }
     description  { "Test Description" }
     user
-    # admin { false }
   end
 end
