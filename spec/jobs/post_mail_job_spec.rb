@@ -6,7 +6,7 @@ RSpec.describe PostMailJob, type: :job do
       ActiveJob::Base.queue_adapter = :test
       post = create(:post)
       expect {
-        PostMailJob.perform_now('post')
+        PostMailJob.perform_now(post)
       }.to have_enqueued_job
     end
   end
